@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="BoughtStatus\AddOnline.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BoughtStatus\ViewStoreBought.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Item\AddUnit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Item\AllItemPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Item\MainItemPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\AddNewUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\AllPerson.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\MainUserPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\PersonChangePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\PersonRelation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Person\ViewAllDeleted.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Shipment\AddShipment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Shipment\ShipmentReceived.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="BoughtStatus\AddOnline.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BoughtStatus\ViewStoreBought.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Item\AddUnit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Item\AllItemPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Item\MainItemPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\AddNewUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Log-In\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\AllPerson.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\EditNewUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\MainUserPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\PersonChangePassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\PersonRelation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Person\ViewAllDeleted.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Shipment\AddShipment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Shipment\ShipmentReceived.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

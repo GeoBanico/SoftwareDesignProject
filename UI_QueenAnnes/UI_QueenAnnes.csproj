@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>CuriosityShop_Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Item\Add.png" />
+    <None Remove="Item\Back.png" />
+    <None Remove="Item\Buy.png" />
+    <None Remove="Item\Delete.png" />
+    <None Remove="Item\Edit.png" />
+    <None Remove="Item\Review_1.png" />
+    <None Remove="Item\search_icon.png" />
+    <None Remove="Log-In\CuriosityShop_Logo.png" />
+    <None Remove="Log-In\CuriosityShop_NewLogo.png" />
+    <None Remove="Person\back1.png" />
+    <None Remove="Person\Edit2.png" />
+    <None Remove="Person\item.png" />
+    <None Remove="Person\item_details.png" />
+    <None Remove="Person\next.png" />
+    <None Remove="Person\Review.png" />
+    <None Remove="Person\Save.png" />
+    <None Remove="Person\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+    <PackageReference Include="ShowMeTheXAML" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoftwareDesign_Project_QueenAnneCuriosityShop\SoftwareDesign_Project_QueenAnneCuriosityShop.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Item\Add.png" />
+    <Resource Include="Item\Back.png" />
+    <Resource Include="Item\Buy.png" />
+    <Resource Include="Item\Delete.png" />
+    <Resource Include="Item\Edit.png" />
+    <Resource Include="Item\Review_1.png" />
+    <Resource Include="Item\search_icon.png" />
+    <Resource Include="Log-In\CuriosityShop_Logo.png" />
+    <Resource Include="Log-In\CuriosityShop_NewLogo.png" />
+    <Resource Include="Person\back1.png" />
+    <Resource Include="Person\Edit2.png" />
+    <Resource Include="Person\item.png" />
+    <Resource Include="Person\item_details.png" />
+    <Resource Include="Person\next.png" />
+    <Resource Include="Person\Review.png" />
+    <Resource Include="Person\Save.png" />
+    <Resource Include="Person\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Person\EditNewUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Person\EditNewUser.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,129 @@
+﻿<Window x:Class="UI_QueenAnnes.Shipment.ShipmentReceived"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_QueenAnnes.Shipment"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Light"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Title="ShipmentReceived" Height="450" Width="650" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF03A9F4" Width="600">
+            <Label Content="Curiosity Shop:" FontSize="25" Foreground="White" FontWeight="Bold" Padding="5,3"/>
+            <Label Content="Receive Shipment Details"  FontSize="25" Foreground="White" Padding="5,3"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="LblNoReceiveStatus" Grid.Row="0" Height="30" Margin="5" Padding="5,3" Text="{Binding Path=ReceiveStatus}"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5" >
+                        <Label Content="ShipmentId: " Margin="5" Padding="5,3"/>
+                        <Label x:Name="LblShipmentId" Content="{Binding Path=ShipmentId}" Margin="5" Padding="5,3"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                        <Label Content="Unit Name: " Margin="5" Padding="5,3"/>
+                        <Label x:Name="LblUnitName" Margin="5" Padding="5,3" Content="{Binding Path=UnitName}"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1" x:Name="LblHasReceive" Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                        <Label Content="Arrival Date:" Margin="5" Padding="5,3"/>
+                        <Label x:Name="LblArrive" Content="{Binding Path=SelectedReceive.ArivalDate, StringFormat={}{0:dd-MMM-yyyy}}" Width="150" Margin="5" Padding="5,3"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <Label Content="Item Condition:" Margin="5" Padding="5,3"/>
+                        <Label x:Name="LblCondition" Content="{Binding Path=SelectedReceive.Condition}" Width="150" Margin="5" Padding="5,3"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                        <Label Content="Employee Received:" Margin="5" Padding="5,3"/>
+                        <Label x:Name="LblEmployee" Content="{Binding Path=SelectedReceive.PersonName}" Width="150" Margin="5" Padding="5,3"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                    <Button x:Name="BtnAdd" Width="40" Margin="10" Click="BtnAdd_Click" Padding="5" Visibility="Collapsed">
+                        <Image Source="/Item/Add.png" />
+                    </Button>
+
+                    <Button x:Name="BtnBack" Width="40" Margin="10" Padding="5" Click="BtnBack_Click">
+                        <Image Source="/Item/Back.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" x:Name="GrdAddReceive" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                    <Label Content="Arrival Date:" Margin="5" Padding="5,3"/>
+                    <DatePicker x:Name="DpNewArrive" Margin="5" Padding="5,3" Width="150"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                    <Label Content="Item Condition:" Margin="5" Padding="5,3"/>
+                    <ComboBox x:Name="CmbNewCondition" Margin="5" Padding="5,3" Width="150"
+                          ItemsSource="{Binding Path=ConditionList}"
+                          SelectedItem="{Binding Path=SelectedCondition}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+                    <Label Content="Employee Received:" Margin="5" Padding="5,3"/>
+                    <ComboBox x:Name="CmbNewEmployee" Width="150" Margin="5" Padding="5,3"
+                          ItemsSource="{Binding Path=EmployeeList}"
+                          SelectedItem="{Binding Path=SelectedEmployee}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+                    <Button x:Name="BtnAddEmployee" Width="50" Padding="5" Click="BtnAddEmployee_Click">
+                        <Image Source="/Person/Save.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>

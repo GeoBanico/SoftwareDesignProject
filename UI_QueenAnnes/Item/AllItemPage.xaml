@@ -1,0 +1,334 @@
+﻿<Window x:Class="UI_QueenAnnes.Item.AllItemPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_QueenAnnes.Item"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Light"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Title="Curiosity Shop - All Item Page" Height="550" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF03A9F4" Width="900">
+            <Label Content="Curiosity Shop:" FontSize="25" Foreground="White" FontWeight="Bold" Padding="5,3"/>
+            <Label Content="Item Details"  FontSize="25" Foreground="White" Padding="5,3"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label x:Name="TxtPersonName" Content="{Binding Path=Name}" Grid.Column="0" Height="20"/>
+                        <Label x:Name="TxtAccessType" Content="{Binding Path=AccessType}" Grid.Column="1" Height="20"/>
+                    </StackPanel>
+
+                    <Label Grid.Row="1" Content="- Item Details -" FontStyle="Italic" FontWeight="Bold" FontSize="16" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,15,0,0"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10">
+                        <Label Content="Category Name:" Padding="5,3" />
+                        <Label x:Name="LblItemName" Content="{Binding Path=SelectedItem.CategoryName}" Padding="5,3" Margin="10,0" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10">
+                        <Label Content="Item Price:"/>
+                        <Label x:Name="LblItemPrice" Content="{Binding Path=SelectedItem.UnitPrice, StringFormat={}P{0}}"  Margin="10,0" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Margin="0,10">
+                        <Label Content="Item Description:"/>
+                        <Label x:Name="LblItemDesc" Content="{Binding Path=SelectedItem.UnitDescription}" Padding="5,3"  Margin="30,0,0,0" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10">
+                        <Label Content="Item Quantity:" Padding="5,3"/>
+                        <Label x:Name="LblItemQuan" Content="{Binding Path=SelectedItem.UnitQuantity, StringFormat={}{0} items}"  Padding="5,3" Margin="10,0" Width="150"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" HorizontalAlignment="Center" Content="- Supply Details -" FontSize="16" FontStyle="Italic" FontWeight="Bold" Margin="0,20,0,10" Padding="5,3"/>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" >
+                    <Label Content="Item supplied using: " FontStyle="Italic" Padding="5,3"/>
+                    <Label x:Name="LblBought" Content="{Binding Path=SelectedItem.Status}" Padding="5,3" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <Grid Grid.Row="2">
+                    <TabControl x:Name="TabControl" Width="600" Height="400" Visibility="Collapsed">
+                        <TabItem Header="Direct Supplier" x:Name="TabItemDS" Visibility="Collapsed">
+                            <Grid x:Name="GrdDS" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <ListBox x:Name="LstDirectSupplier" Height="250" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0"
+                                             Background="#FF03A9F4"
+                                             ItemsSource="{Binding Path=SelectedItem.ShipmentList}" 
+                                             SelectedItem="{Binding Path=SelectedShipment}" SelectionChanged="LstDirectSupplier_SelectionChanged">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Margin="5,3" FontWeight="Bold" Text="{Binding Path=CompanyName}" />
+                                                        <TextBlock Margin="5,3" Text="{Binding Path=ShipperName}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
+                                    <StackPanel Orientation="Vertical" Margin="20,10">
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="Departure Date: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblDepDate" Content="{Binding Path=SelectedShipment.DepartureDate}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="Expected Arrival Date: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblArrDate" Content="{Binding Path=SelectedShipment.ExpectedArrivalDate}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="Total Shipment Cost: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblDSTotal" Content="{Binding Path=SelectedShipment.ShipmentCost, StringFormat={}P{0}}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="Quantity: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblDSQuantity" Content="{Binding Path=SelectedShipment.Quantity}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="City: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblDSCityName" Content="{Binding Path=SelectedShipment.CityName}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                                            <Label Content="Insurance: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblDSInsuranceType" Content="{Binding Path=SelectedShipment.InsuranceType}" Margin="5" Padding="5,3" Width="150"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button x:Name="BtnReceive"  Height="30" Width="40" Grid.Column="0" Padding="5" Visibility="Collapsed" ToolTip="Receive Shipment Details"
+                                            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-60,5,0,0"  Click="BtnReceive_Click">
+                                        <Image Source="/Item/Review_1.png" />
+                                    </Button>
+
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <Button Height="30" Width="40" x:Name="BtnDSAdd" Click="BtnDSAdd_Click" Padding="5" ToolTip="Add a Shipping Detail">
+                                            <Image Source="/Item/Add.png"  />
+                                        </Button>
+                                        <Button Height="30" Width="40" x:Name="BtnDSEdit" Padding="5" Click="BtnDSEdit_Click" Visibility="Collapsed" ToolTip="Edit Shipping Details">
+                                            <Image Source="/Item/Edit.png" />
+                                        </Button> 
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Online" x:Name="TabItemOnline" Visibility="Collapsed">
+                            <Grid x:Name="GrdOnline" Margin="10" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ListBox Grid.Column="0" Width="200" Height="250" Margin="0,10" Background="#FF03A9F4"
+                                             ItemsSource="{Binding Path=SelectedItem.OnlineList}"
+                                             SelectedItem="{Binding Path=SelectedOnline}" SelectionChanged="ListBox_SelectionChanged">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Margin="3" Text="{Binding Path=StoreName}" />
+                                                        <TextBlock Margin="3" FontWeight="Bold" Text="{Binding Path=Total}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Quantity: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblOnlineQuantity" Content="{Binding Path=SelectedOnline.Quantity}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Date Bought: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblOnlineBoughtDate" Content="{Binding Path=SelectedOnline.DateBought}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Arrival Date: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblOnlineArrivalDate" Content="{Binding Path=SelectedOnline.ArrivalDate}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="BtnOnlineAdd" Height="30" Width="40" Padding="5" Click="BtnOnlineAdd_Click" ToolTip="Add Online Details">
+                                        <Image Source="/Item/Add.png" />
+                                    </Button>
+                                    <Button x:Name="BtnOnlineEdit" Height="30" Width="40" Padding="5" Click="BtnOnlineEdit_Click" ToolTip="Edit Online Details" Visibility="Collapsed">
+                                        <Image Source="/Item/Edit.png" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Store Bought" x:Name="TabItemStore" Visibility="Collapsed">
+                            <Grid x:Name="GrdStore" Margin="10" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ListBox x:Name="LstStore"  Grid.Column="0" Width="200" Height="250" Margin="20,10" Background="#FF03A9F4"
+                                             ItemsSource="{Binding Path=SelectedItem.StoreList}"
+                                             SelectedItem="{Binding Path=SelectedStore}" SelectionChanged="LstStore_SelectionChanged">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Margin="3" Text="{Binding Path=StoreName}" />
+                                                        <TextBlock Margin="3" FontWeight="Bold" Text="{Binding Path=Total}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Bought From: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblStoreCity" Content="{Binding Path=SelectedStore.CityName}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Bought on: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblStoreDate" Content="{Binding Path=SelectedStore.DateBought}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,5">
+                                            <Label Content="Quantity: " Margin="5" Padding="5,3"/>
+                                            <Label x:Name="LblStoreQuantity" Content="{Binding Path=SelectedStore.Quantity}" Margin="5" Padding="5,3"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="BtnStoreAdd" Height="30" Width="40" Padding="5" Click="BtnStoreAdd_Click" ToolTip="Add Store Bought Details">
+                                        <Image Source="/Item/Add.png" />
+                                    </Button>
+                                    <Button x:Name="BtnStoreEdit" Height="30" Width="40" Padding="5" Click="BtnStoreEdit_Click" ToolTip="Edit Store Bought Details"  Visibility="Collapsed">
+                                        <Image Source="/Item/Edit.png" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+
+                <StackPanel x:Name="GrdAddStatus" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+                    <ComboBox x:Name="CmbAddItemDetails" Width="150" Margin="0,20,0,0" Height="30"
+                              ItemsSource="{Binding Path=UnitStatus}" 
+                              SelectedItem="{Binding Path=SelectedStatus}"/>
+                    <Button Margin="10,0,0,0" x:Name="BtnUnitAdd" Height="30" Width="40" Padding="5" Click="BtnUnitAdd_Click" VerticalAlignment="Bottom" ToolTip="Add a">
+                        <Image Source="/Item/Add.png" />
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BtnQuit" Grid.Column="0" Height="35" Width="60" Margin="0,0,10,0" Click="BtnQuit_Click" Padding="5">
+                <Image Source="/Item/Back.png" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

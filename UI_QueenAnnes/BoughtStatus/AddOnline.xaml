@@ -1,0 +1,130 @@
+﻿<Window x:Class="UI_QueenAnnes.BoughtStatus.AddOnline"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_QueenAnnes.BoughtStatus"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Light"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Title="AddOnline" Height="500" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF03A9F4" Width="650">
+            <Label Content="Curiosity Shop:" FontSize="25" Foreground="White" FontWeight="Bold" Padding="5,3"/>
+            <Label Content="Online Details"  FontSize="25" Foreground="White" Padding="5,3"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,10">
+                    <Label Content="Date Bought: " Padding="5,3" Margin="5"/>
+                    <DatePicker x:Name="DpDateBought" Padding="5,3" Margin="5" Width="150" SelectedDate="{Binding Path=SelectedOnline.DateBought}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,10">
+                    <Label Content="Arrival Bought: " Padding="5,3" Margin="5" />
+                    <DatePicker x:Name="DpArrivalDate" Padding="5,3" Margin="5" Width="150" SelectedDate="{Binding Path=SelectedOnline.ArrivalDate}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,10">
+                    <Label Content="Total: " Padding="5,3" Margin="5"/>
+                    <TextBox x:Name="TxtTotal" Padding="5,3" Margin="5" Width="100" Text="{Binding Path=SelectedOnline.Total}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20,10">
+                    <Label Content="Quantity: "/>
+                    <TextBox x:Name="TxtQuantity" Padding="5,3" Margin="5" Width="50" Text="{Binding Path=SelectedOnline.Quantity}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Orientation="Vertical" Margin="20,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="From Store: " Padding="5,3" Margin="5"/>
+                        <ComboBox x:Name="CmbStore" Padding="5,3" Margin="5" Width="150"
+                                  ItemsSource="{Binding Path=StoreList}"
+                                  SelectedItem="{Binding Path=SelectedStore}" />
+                    </StackPanel>
+                    <Button x:Name="btnViewStore" Margin="10" Width="50" Height="30" Padding="5" Click="btnViewStore_Click" ToolTip="View Online store">
+                        <Image Source="/Person/Review.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" x:Name="GrdOnlineStore" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="- Online Store Details -" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="16" FontStyle="Italic" Margin="10"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="Store Name: " Margin="-50,10,10,10"/>
+                        <TextBox x:Name="TxtStoreName" Width="150" Text="{Binding Path=SelectedStore}" IsEnabled="False"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="0,40,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button x:Name="BtnOnlineStoreAdd" Width="50" Padding="5" Click="BtnOnlineStoreAdd_Click" ToolTip="Add new Online store">
+                            <Image Source="/Item/Add.png" />
+                        </Button>
+
+                        <Button x:Name="BtnOnlineStoreEdit" Width="50" Padding="5" Click="BtnOnlineStoreEdit_Click" ToolTip="Edit selected Online store">
+                            <Image Source="/Item/Edit.png" />
+                        </Button>
+
+                        <Button x:Name="BtnOnlineStoreDelete" Width="50" Padding="5" Click="BtnOnlineStoreDelete_Click" ToolTip="Delete selected Online Store">
+                            <Image Source="/Item/Delete.png" />
+                        </Button>
+
+                        <Button x:Name="BtnOnlineStoreSave" Width="50" Padding="5" Click="BtnOnlineStoreSave_Click" ToolTip="Save Changes" Visibility="Collapsed">
+                            <Image Source="/Person/Save.png" />
+                        </Button>
+
+                        <Button x:Name="BtnOnlineStoreBack" Width="50" Padding="5" Click="BtnOnlineStoreBack_Click" ToolTip="Return">
+                            <Image Source="/Item/Back.png"  />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+            <Button Width="50" Height="35" Padding="5" x:Name="BtnSave" Click="BtnSave_Click" ToolTip="Save Online Details">  
+                <Image Source="/Person/Save.png" />
+            </Button>
+
+            <Button Width="50" Height="35" Padding="5" x:Name="BtnBack" Click="BtnBack_Click" ToolTip="Back">
+                <Image Source="/Item/Back.png" />
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
